@@ -24,6 +24,8 @@
 
 Farm is a computer cluster that runs a distribution of Linux called CentOS version 5.8. 
 
+Farm has a **head node** , which controls the cluster, and **compute nodes** which is where the action happens. For the most part, you interact with Farm using scripts to launch jobs on the compute nodes; you don't run processes on the head node and you don't log into the compute nodes directly.
+
 ####Setting up your account:
 
 In order to create an account on farm you need to send the CSE Help department your SSH public key. This key is a file created on your computer (not farm) that identifies your computer as your computer to farm. It's like a password that you don't need to type in. The process for generating your SSH public key is as follows:
@@ -549,11 +551,15 @@ To find out more, use the manual page:
 
 #####/dev/null:
 This is a directory in Linux that is akin to a wasteland. If you have output files you don't need you can send them here and it's like deleting them. This is especially useful with the SGE because it has default output and error files. If you don't need to look at these, you can add this to the top of your script and it won't write them to disk:
+<<<<<<< HEAD
 
+=======
+>>>>>>> rilab/master
 
 	#$ -e /dev/null
 	#$ -o /dev/null
 
+<<<<<<< HEAD
 ####Contributing to the wiki
 
 To contribute to this wiki you will need a Github account. First you will want to fork the repository, which you can do by going to the top of the page and clicking "fork". Then, go to the folder you want  to store the repository in on your computer and clone it:
@@ -581,3 +587,5 @@ Now you should have the most recent version of the RILAB wiki.
 #####Submitting changes to the RILAB wiki
 
 Pull requests.
+=======
+>>>>>>> rilab/master
