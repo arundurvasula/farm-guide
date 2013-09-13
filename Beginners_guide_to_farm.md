@@ -16,6 +16,7 @@
 - Python basics
 - Git 
 - Special Unix things [WriteFailed: Broken Pipe, convince people to learn awk, /dev/null]
+- Contributing to the wiki
     
 ###All about farm:
 
@@ -364,6 +365,10 @@ Defines or redefines the list of users to which the server that executes the job
 
 The name of the job. The name can be any printable set of characters, starting with an alphabetic character. If the `-N` option is not present Grid Engine assigns the name of the job script to the job after any directory pathname has been removed from the script-name.
 
+ `-tc max_running_tasks`
+ 
+allow users to limit concurrent array job task  execution.  Parameter `max_running_tasks` specifies  maximum number of simultaneously running tasks.  For example we have  running SGE  with 10 free slots. We call `qsub -t 1-100 -tc 2  jobscript`. Then  only  2  tasks  will  be scheduled to run even when 8 slots are free.
+
 #####Output to many files vs one:
 When using qsub, you are going to want to save the output of each simulation in a different file. This is because when multiple processors write to the same file, bad and funky things happen. James Brown may be pleased, but you will not be. To achieve this, use the built-in variables (`$SGE_TASK_ID`, `$JOB_ID`) to number your output files.
 
@@ -544,11 +549,35 @@ To find out more, use the manual page:
 
 #####/dev/null:
 This is a directory in Linux that is akin to a wasteland. If you have output files you don't need you can send them here and it's like deleting them. This is especially useful with the SGE because it has default output and error files. If you don't need to look at these, you can add this to the top of your script and it won't write them to disk:
-<<<<<<< HEAD
+
 
 	#$ -e /dev/null
 	#$ -o /dev/null
-=======
-#$ -e /dev/null
-#$ -o /dev/null
->>>>>>> origin/master
+
+####Contributing to the wiki
+
+To contribute to this wiki you will need a Github account. First you will want to fork the repository, which you can do by going to the top of the page and clicking "fork". Then, go to the folder you want  to store the repository in on your computer and clone it:
+
+	git clone https://github.com/RILAB/farm-guide.git
+
+#####Updating to the current version of the farm guide
+
+Before you start adding things to the wiki, to avoid merging madness you want to update your fork to the current version of the RILAB fork.
+
+First you want to add the repository for tracking:
+
+	git remote add --track master rilab https://github.com/RILAB/farm-guide.git
+	
+Then fetch the current version
+
+	git fetch rilab
+	
+Then merge it with yours:
+
+	git merge rilab/master
+	
+Now you should have the most recent version of the RILAB wiki.
+
+#####Submitting changes to the RILAB wiki
+
+Pull requests.
